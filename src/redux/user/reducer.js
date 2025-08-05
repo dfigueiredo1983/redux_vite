@@ -1,5 +1,6 @@
 // armazena o state do user
 
+import { act } from "react";
 import UserActionTypes from "./action-types";
 
 const initialState = {
@@ -10,21 +11,22 @@ const initialState = {
 // state - estado que vai ser aplicado
 // action - objeto com type e payload
 const userReducer = (state = initialState, action) => {
-    if (action.type === UserActionTypes.LOGIN) {
-        return {
-            ...state, 
-            currentUser: action.payload,
-        };
+    switch (action.type){
+        case UserActionTypes.LOGIN:
+            return {
+                ...state, 
+                currentUser: action.payload,
+            };
+    
+        case UserActionTypes.LOGOUT:
+            return {
+                ...state, 
+                currentUser: null,
+            };
+        
+        default:
+            return state;
     }
-
-    if (action.type === UserActionTypes.LOGOUT) {
-        return {
-            ...state, 
-            currentUser: null,
-        };
-    }
-
-    return state;
 };
 
 export default userReducer;
