@@ -36,11 +36,18 @@ function Header() {
     })
   }
 
+  const handleLogoutClick = () => {
+    dispatch({
+      // type: 'user/login',
+      type: UserActionTypes.LOGOUT,
+    })
+  }
+
   return (
     <Styles.Container>
       <Styles.Logo>Redux Shopping</Styles.Logo>
       <Styles.Buttons>
-        <div onClick={handleLoginClick}>Login</div>
+        {currentUser ? <div onClick={handleLogoutClick}>Sair</div> : <div onClick={handleLoginClick}>Login</div>}
         <div onClick={handleCartClick}>Carrinho</div>
       </Styles.Buttons>
 
