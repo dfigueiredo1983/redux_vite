@@ -1,3 +1,4 @@
+import { act } from "react";
 import CartActionTypes from "./action-types";
 
 const initialState = {
@@ -8,6 +9,7 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case CartActionTypes.ADD_PRODUCT:
+        {
             // verificar se existe no carrinho
             const productIsAlreadyInCart = state.products.some(product => product.id === action.payload.id);
             
@@ -27,15 +29,26 @@ const cartReducer = (state = initialState, action) => {
                     { ...action.payload, quantity: 1 }
                 ],
             }
-            
-            case CartActionTypes.REMOVE_PRODUCT:
-                return {
-                    ...state,
-                    products: state.products.filter(product => product.id !== action.payload),
-                };
-            
-            default:
-            return state;
+        }
+
+        case CartActionTypes.REMOVE_PRODUCT:
+        {
+            return {
+                ...state,
+                products: state.products.filter(product => product.id !== action.payload),
+            };
+        }
+
+        case CartActionTypes.INCREASE_PRODUCT:
+        {
+            return {
+                ...state,
+                products: state.products.map(product => product.id === action.payload.id ? { ...product, quantity: product.quantity + 1} : product),
+            };
+        }
+        
+        default:
+        return state;
     }
 }
 

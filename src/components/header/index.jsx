@@ -20,6 +20,7 @@ function Header() {
 
   const dispatch = useDispatch();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const productsCount = useMemo(() => {
     return products.reduce((acc, curr) => acc + curr.quantity ,0);
   })
