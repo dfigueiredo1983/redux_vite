@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CartContainer = styled.div`
   position: fixed;
+  z-index: 9999;
   height: 100vh;
   width: 100vw;
   right: 0;
@@ -11,8 +12,10 @@ export const CartContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: flex-end;
-  visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
-  opacity: ${(props) => (props.isVisible ? "1" : "0")};
+
+  visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
+  opacity: ${({ $isVisible }) => ($isVisible ? "1" : "0")};
+
   transition: all 0.3s ease;
 
   p {

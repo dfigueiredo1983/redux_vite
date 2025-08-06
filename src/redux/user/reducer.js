@@ -1,6 +1,4 @@
 // armazena o state do user
-
-import { act } from "react";
 import UserActionTypes from "./action-types";
 
 const initialState = {
