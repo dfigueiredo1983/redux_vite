@@ -39,7 +39,7 @@ const cartReducer = (state = initialState, action) => {
             };
         }
 
-        case CartActionTypes.INCREASE_PRODUCT:
+        case CartActionTypes.INCREASE_PRODUCT_QUANTITY:
         {
             return {
                 ...state,
@@ -47,8 +47,20 @@ const cartReducer = (state = initialState, action) => {
             };
         }
         
+        case CartActionTypes.DECREASE_PRODUCT_QUANTITY:
+        {
+            return {
+                ...state,
+                products: state.products.map((product) => 
+                    product.id === action.payload.id 
+                    ? { ...product, quantity: product.quantity - 1} 
+                    : product
+                ).filter((product) => product.quantity > 0)
+            };
+        }
+        
         default:
-        return state;
+            return state;
     }
 }
 
