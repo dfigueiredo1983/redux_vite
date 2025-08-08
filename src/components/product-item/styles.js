@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
-
+  width: 300px;
+  
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
-
+    
 export const ProductInfo = styled.div`
   display: flex;
   justify-content: space-between;

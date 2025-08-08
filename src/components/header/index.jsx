@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Components
@@ -9,6 +9,7 @@ import * as Styles from "./styles";
 
 // Actions User
 import { loginUser, logoutUser } from "../../redux/user/actions";
+import { selectProductsCount } from "../../redux/cart/cart.selectors";
 
 function Header() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
@@ -16,14 +17,18 @@ function Header() {
   // Fazendo um destructuring com {} para pegar as partes do retorno
   // chamo rootReducer e retorno rootReducer.
   const { currentUser } = useSelector((rootReducer) => rootReducer.userReducer);
-  const { products } = useSelector((rootReducer) => rootReducer.cartReducer);
+  const productsCount = useSelector(selectProductsCount);
 
   const dispatch = useDispatch();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const productsCount = useMemo(() => {
-    return products.reduce((acc, curr) => acc + curr.quantity ,0);
-  })
+  // deriver data
+  // const productsCount = useMemo(() => {
+  //   return products.reduce((acc, curr) => acc + curr.quantity ,0);
+  // })
+
+
+
 
   const handleCartClick = () => {
     setCartIsVisible(true);

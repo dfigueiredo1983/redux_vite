@@ -1,4 +1,4 @@
-import { act } from "react";
+import { React } from "react";
 import CartActionTypes from "./action-types";
 
 const initialState = {
@@ -8,56 +8,56 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CartActionTypes.ADD_PRODUCT:
-        {
-            // verificar se existe no carrinho
-            const productIsAlreadyInCart = state.products.some(product => product.id === action.payload.id);
+        // case CartActionTypes.ADD_PRODUCT:
+        // {
+        //     // verificar se existe no carrinho
+        //     const productIsAlreadyInCart = state.products.some(product => product.id === action.payload.id);
             
-            // se existir adicionar +1 na quantidade
-            if (productIsAlreadyInCart) {
-                return{
-                    ...state,
-                    products: state.products.map(product => product.id === action.payload.id ? { ...product, quantity: product.quantity + 1} : product),
-                };
-            }         
+        //     // se existir adicionar +1 na quantidade
+        //     if (productIsAlreadyInCart) {
+        //         return{
+        //             ...state,
+        //             products: state.products.map(product => product.id === action.payload.id ? { ...product, quantity: product.quantity + 1} : product),
+        //         };
+        //     }         
             
-            // se não existir adicionar ao carrinho
-            return {
-                ...state,
-                products: [
-                    ...state.products,
-                    { ...action.payload, quantity: 1 }
-                ],
-            }
-        }
+        //     // se não existir adicionar ao carrinho
+        //     return {
+        //         ...state,
+        //         products: [
+        //             ...state.products,
+        //             { ...action.payload, quantity: 1 }
+        //         ],
+        //     }
+        // }
 
-        case CartActionTypes.REMOVE_PRODUCT:
-        {
-            return {
-                ...state,
-                products: state.products.filter(product => product.id !== action.payload),
-            };
-        }
+        // case CartActionTypes.REMOVE_PRODUCT:
+        // {
+        //     return {
+        //         ...state,
+        //         products: state.products.filter(product => product.id !== action.payload),
+        //     };
+        // }
 
-        case CartActionTypes.INCREASE_PRODUCT_QUANTITY:
-        {
-            return {
-                ...state,
-                products: state.products.map(product => product.id === action.payload.id ? { ...product, quantity: product.quantity + 1} : product),
-            };
-        }
+        // case CartActionTypes.INCREASE_PRODUCT_QUANTITY:
+        // {
+        //     return {
+        //         ...state,
+        //         products: state.products.map(product => product.id === action.payload.id ? { ...product, quantity: product.quantity + 1} : product),
+        //     };
+        // }
         
-        case CartActionTypes.DECREASE_PRODUCT_QUANTITY:
-        {
-            return {
-                ...state,
-                products: state.products.map((product) => 
-                    product.id === action.payload.id 
-                    ? { ...product, quantity: product.quantity - 1} 
-                    : product
-                ).filter((product) => product.quantity > 0)
-            };
-        }
+        // case CartActionTypes.DECREASE_PRODUCT_QUANTITY:
+        // {
+        //     return {
+        //         ...state,
+        //         products: state.products.map((product) => 
+        //             product.id === action.payload.id 
+        //             ? { ...product, quantity: product.quantity - 1} 
+        //             : product
+        //         ).filter((product) => product.quantity > 0)
+        //     };
+        // }
         
         default:
             return state;
