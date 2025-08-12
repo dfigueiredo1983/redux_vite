@@ -8,7 +8,7 @@ import Cart from "../cart/index";
 import * as Styles from "./styles";
 
 // Actions User
-import { loginUser, logoutUser } from "../../redux/user/actions";
+import { loginUser, logoutUser } from "../../redux/user/slice";
 import { selectProductsCount } from "../../redux/cart/cart.selectors";
 
 function Header() {
@@ -20,15 +20,6 @@ function Header() {
   const productsCount = useSelector(selectProductsCount);
 
   const dispatch = useDispatch();
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // deriver data
-  // const productsCount = useMemo(() => {
-  //   return products.reduce((acc, curr) => acc + curr.quantity ,0);
-  // })
-
-
-
 
   const handleCartClick = () => {
     setCartIsVisible(true);
